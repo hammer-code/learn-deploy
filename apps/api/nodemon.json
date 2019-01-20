@@ -1,0 +1,5 @@
+{
+  "verbose": true,
+  "inspect": true,
+  "ignore": ["node_modules/**/*"]
+}

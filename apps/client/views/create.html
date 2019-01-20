@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Create</h1>
+
+  <form id="form">
+    <input type="text" name="title">
+    <input type="text" name="date">
+    <button>Add</button>
+  </form>
+  
+  <script src="/static/js/lib.js"></script>
+  <script>
+    const form = document.querySelector('#form');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+      const title = event.target.title.value;
+      const date = event.target.date.value;
+
+      const payload = JSON.stringify({
+        title, 
+        date,
+      });
+
+      fetch(ENDPOINT_BASE_URL + '/api/events', {
+        method: 'POST',
+        body: payload,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then((data) => {
+          window.location.href= '/'
+        })
+    });
+  </script>
+</body>
+</html>

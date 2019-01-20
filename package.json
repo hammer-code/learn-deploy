@@ -1,0 +1,17 @@
+{
+  "name": "event-mgmt",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "lerna run dev --stream",
+    "start": "lerna run start --stream",
+    "test": "lerna run test --stream"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lerna": "^3.8.5"
+  }
+}
