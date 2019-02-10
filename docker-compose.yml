@@ -13,6 +13,6 @@ services:
   mongodb:
     image: mongo:jessie
     volumes:
-      - /Users/eezhal/mongo-volumne:/data/db
+      - ./mongo-volume:/data/db
     ports:
       - 27018:27017
