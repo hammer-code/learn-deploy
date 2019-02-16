@@ -7,11 +7,15 @@ function getEvents () {
  * Membuat card element
  * @param {object} data 
  * @param {string} data.title 
+ * @param {string} data._id 
  * @param {string} data.date 
+ * @param {string} data.creator
+ * @param {Array} data.roles
  */
 function Card (data) {
   this.title = data.title;
   this.date = data.date;
+  this.creator = data.creator;
   this.el = null;
 
   this._build();
@@ -25,9 +29,11 @@ Card.prototype._build = function () {
 
   const title = this._createTitle(this.title);
   const date = this._createDate(this.date);
+  const creator = this._createCreator(this.creator);
 
   card.append(title);
   card.append(date);
+  card.append(creator);
   
   this.el = card;
 }
@@ -41,6 +47,12 @@ Card.prototype._createTitle = function createTitle (title) {
 Card.prototype._createDate = function createDate (date) {
   const span = document.createElement('span');
   span.innerText = formatDate(new Date(date));  
+  return span;
+}
+
+Card.prototype._createCreator = function createCreator (creator) {
+  const span = document.createElement('div');
+  span.innerText = 'Dibuat oleh: ' + creator.username
   return span;
 }
 

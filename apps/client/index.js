@@ -9,15 +9,11 @@ app.use(
   )
 );
 
-app.get('/', (request, response) => {
-  const filePath = path.resolve(__dirname, './views/index.html');
-  response.sendFile(filePath);
-});
-
-app.get('/create', (request, response) => {
-  const filePath = path.resolve(__dirname, './views/create.html');
-  response.sendFile(filePath);
-});
+app.use(
+  express.static(
+    path.resolve(__dirname, './views')
+  )
+);
 
 const PORT = 4040;
 

@@ -10,6 +10,17 @@ const EventSchema = new Schema({
     type: Date,
     required: true,
   },
+  creator: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    default: null
+  },
+  participants: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ],
   createdAt: {
     type: Date,
     default: Date.now,

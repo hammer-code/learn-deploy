@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login</title>
+</head>
+<body>
+  <form id="loginForm" action="">
+    <input name="username" type="text" placeholder="username">
+    <input name="password" type="password" placeholder="password">
+    <button type="submit">Login</button>
+  </form>
+
+  <button id="getData">Get user private data</button>
+  <button id="getNews">Get News</button>
+  <button id="getReport">Get Report</button>
+
+  <script src="/static/js/lib.js"></script>
+  <script>
+    const form = document.querySelector('#loginForm')
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+
+      const username = event.target.username.value
+      const password = event.target.password.value
+
+      fetch(ENDPOINT_BASE_URL + '/api/auth/login', {
+        method: 'post',
+        body: JSON.stringify({
+          username,
+          password
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          localStorage.setItem('authToken', data.token)
+        })
+    })
+
+    document.querySelector('#getData')
+      .addEventListener('click', () => {
+        const token = localStorage.getItem('authToken') || 'no-auth-token'
+        fetch(ENDPOINT_BASE_URL + '/api/user/private-data', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+      })
+
+    document.querySelector('#getNews')
+      .addEventListener('click', () => {
+        const token = localStorage.getItem('authToken') || 'no-auth-token'
+        fetch(ENDPOINT_BASE_URL + '/api/news', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+      })
+
+    document.querySelector('#getReport')
+      .addEventListener('click', () => {
+        const token = localStorage.getItem('authToken') || 'no-auth-token'
+        fetch(ENDPOINT_BASE_URL + '/api/report', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+      })
+  </script>
+</body>
+</html>
