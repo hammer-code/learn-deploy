@@ -9,6 +9,7 @@ const permissions = {
   'reports.create': [ROLE_ADMIN],
   'reports.delete': [ROLE_ADMIN],
   'reports.update': [ROLE_ADMIN],
+  'events.create': [ROLE_ADMIN, ROLE_ORGANIZER]
 }
 
 function findUserByUsernameAndPassword (username, password) {

@@ -65,6 +65,7 @@ app.get('/api/events', (request, response) => {
 app.post(
   '/api/events', 
   authentication,
+  createAuthorizationGuard('events.create'),
   (request, response) => {
     const userId = request.userId  
     const { title, date } = request.body
