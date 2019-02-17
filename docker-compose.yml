@@ -6,6 +6,7 @@ services:
     volumes:
       - ./:/code
     ports:
+      - 3030:3030
       - 4040:4040
       - 8080:8080
     depends_on:

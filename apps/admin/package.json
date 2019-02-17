@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "admin",
   "private": true,
   "version": "0.0.1",
   "description": "",
@@ -12,7 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "superstatic": "^6.0.4"
   },
   "devDependencies": {
     "http-server": "^0.11.1",
