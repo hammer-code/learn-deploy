@@ -7,47 +7,19 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Create</h1>
+  <h1>Meatup Admin - Create Event</h1>
 
-  <a href="/create.html">Create event</a>
-  <a href="/login.html">Login</a>
-  
+  <ul>
+    <li><a href="/create.html">Create Event</a></li>
+    <li><a href="/login.html">Login</a></li>
+  </ul>
 
-  <form id="form">
-    <input type="text" placeholder="title" name="title">
+  <form id="create-event-form">
+    <input type="text" placeholder="title" autocomplete="off" name="title">
     <input type="text" placeholder="yyyy-mm-dd" name="date">
     <button>Add</button>
   </form>
-  
-  <script src="/static/js/lib.js"></script>
-  <script>
-    const form = document.querySelector('#form');
 
-    form.addEventListener('submit', (event) => {
-      event.preventDefault()
-      const title = event.target.title.value;
-      const date = event.target.date.value;
-
-      const payload = JSON.stringify({
-        title, 
-        date,
-      });
-
-      const token = localStorage.getItem('authToken')
-
-      fetch(ENDPOINT_BASE_URL + '/api/events', {
-        method: 'POST',
-        body: payload,
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then((data) => {
-          window.location.href= '/'
-        })
-    });
-  </script>
+  <script src="/dist/create.js"></script>
 </body>
 </html>

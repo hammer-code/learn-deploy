@@ -1,22 +1,19 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-
-function getEvents () {
-  return fetch('http://localhost:8080/api/events')
-    .then(response => response.json())
-}
+const { formatDate } = require('./lib/date')
+const api = require('./lib/api')
 
 function Event ({ data }) {
   return (
     <div>
       <h2>{data.title}</h2>
-      <p>{data.date}</p>
+      <p>{formatDate(data.date)}</p>
       <p>Created by {data.creator.username}</p>
     </div>
   )
 }
 
-class App extends React.Component {
+class EventList extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -25,7 +22,7 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    getEvents()
+    api.getEvents()
       .then(data => {
         this.setState({ events: data.events })
       })
@@ -33,22 +30,19 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
-        <h1>www.meatup.com</h1>
-        <div>
-          {this.state.events.map((event) => (
-            <Event
-              key={event._id}
-              data={event}
-            />
-          ))}
-        </div>
+      <div className="event-list">
+        {this.state.events.map((event) => (
+          <Event
+            key={event._id}
+            data={event}
+          />
+        ))}
       </div>
     )
   }
 }
 
 ReactDOM.render(
-  <App />,
+  <EventList />,
   document.querySelector('#app')
 )
