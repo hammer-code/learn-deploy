@@ -2,8 +2,8 @@ const path = require('path');
 require('dotenv').config({
   path: path.resolve(__dirname, '../.env'),
 });
-const db = require('../db');
-const app = require('../app');
+const db = require('../src/db');
+const app = require('../src/app');
 const supertest = require('supertest');
 const request = supertest(app);
 
