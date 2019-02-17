@@ -23,7 +23,10 @@ function createEvent ({ title, date }) {
 
 function removeEvent (eventId) {
   return fetch('http://localhost:8080/api/events/' + eventId, {
-    method: 'delete'
+    method: 'delete',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
   })
     .then(response => response.json())
 }
