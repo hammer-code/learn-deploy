@@ -51,6 +51,16 @@ function getReport () {
       'Authorization': `Bearer ${token}`
     }
   })
+  .then(response => response.json())
+}
+
+function getMe () {
+  return fetch(ENDPOINT_BASE_URL + '/api/users/me', {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+    .then(response => response.json())
 }
 
 module.exports = {
@@ -59,4 +69,5 @@ module.exports = {
   createEvent,
   removeEvent,
   getReport,
+  getMe,
 }

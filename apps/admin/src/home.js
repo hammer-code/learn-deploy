@@ -56,7 +56,50 @@ class EventList extends React.Component {
   }
 }
 
+class User extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      user: { _id: null, username: '-___-' }
+    }
+  }
+
+  componentDidMount () {
+    api.getMe()
+      .then((data) => {
+        this.setState({
+          user: data.user
+        })
+      })
+  }
+
+  render () {
+    const { user } = this.state
+
+    return (
+      <div>
+        {user._id ? (
+          <div>Logged in as: @{user.username}</div>
+        ) : (
+          <div>Please login first</div>
+        )}
+      </div>
+    )
+  }
+}
+
+function App () {
+  const token = localStorage.getItem('authToken')
+
+  return (
+    <>
+      <User />
+      <EventList />
+    </>
+  )
+}
+
 ReactDOM.render(
-  <EventList />,
+  <App />,
   document.querySelector('#app')
 )
