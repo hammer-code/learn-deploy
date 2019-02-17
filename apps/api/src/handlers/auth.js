@@ -4,7 +4,7 @@ const userService = require('../services/user');
 async function login (request, response) {
   const { username, password } = request.body
   let foundUser = null
-  
+
   try {
     foundUser = await userService.findByUsernameAndPassword(username, password)
   } catch (error) {

@@ -89,8 +89,6 @@ class User extends React.Component {
 }
 
 function App () {
-  const token = localStorage.getItem('authToken')
-
   return (
     <>
       <User />

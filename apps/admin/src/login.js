@@ -10,7 +10,7 @@ form.addEventListener('submit', (event) => {
 
   api.login({ username, password })
     .then((data) => {
-      localStorage.setItem('autToken', data.token)
+      localStorage.setItem('authToken', data.token)
     })
 })
 
